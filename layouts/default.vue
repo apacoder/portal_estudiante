@@ -4,7 +4,7 @@
     <!-- ruta a /inicio -->
      <nav class="flex space-x-4 justify-center">
          <nuxt-link class="bg-sky-100 px-4 py-1" to="/inicio">Inicio</nuxt-link>
-         <nuxt-link class="bg-sky-100 px-4 py-1" to="/alumno/perfil">Home</nuxt-link>
+         <nuxt-link class="bg-sky-100 px-4 py-1" to="/alumno/perfil">Perfil</nuxt-link>
      </nav>
     
     <div>
