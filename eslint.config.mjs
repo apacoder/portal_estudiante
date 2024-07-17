@@ -10,8 +10,11 @@ export default withNuxt({
     'comma-style': ['warn', 'last'],
     'prefer-const': 'warn',
     'brace-style': ['error', '1tbs', { 'allowSingleLine': true }], 
-    'no-unused-vars': 'warn',
     'vue/no-multiple-template-root': 'off',
+  },
+}).override('nuxt/typescript/rules', {
+  rules: {
+    '@typescript-eslint/no-unused-vars': 'warn',
   },
 })
 
