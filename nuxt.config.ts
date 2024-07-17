@@ -6,4 +6,9 @@ export default defineNuxtConfig({
   plugins: [
     '~/plugins/init.client.ts',
   ],
+  app: {
+    head: {
+      script: [ { src: 'https://accounts.google.com/gsi/client' } ],
+    },
+  },
 })
