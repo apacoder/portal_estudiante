@@ -4,15 +4,14 @@
 </template>
 <script setup>
 import { api_gestion_autorizacion, setCSRFToken } from '~/server/axios'
+import env from '~/config/env'
 
 definePageMeta({ layout: false})
-
-const runtimeConfig = useRuntimeConfig()
 
 onMounted(() => {
   window.onload = () => {
     google.accounts.id.initialize({
-      client_id: runtimeConfig.public.GOOGLE_CLIENT_ID,
+      client_id: env.GOOGLE_CLIENT_ID,
       callback: handleCredentialResponse,
     })
     google.accounts.id.renderButton(
@@ -29,10 +28,9 @@ async function handleCredentialResponse(response) {
   console.table(data)
 }
 
-const testTequest = () => {
-  api_gestion_autorizacion.post('/test_request').then(({ data }) => {
-    console.table(data)
-  })
+async function testTequest() {
+  const { data } = await api_gestion_autorizacion.post('/test_request')
+  console.table(data)
 }
 
 </script>
