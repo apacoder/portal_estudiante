@@ -13,7 +13,8 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      googleClientId: process.env.GOOGLE_CLIENT_ID,
+      GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+      API_GESTION_AUTORIZACION: process.env.API_GESTION_AUTORIZACION,
     },
   },
 })

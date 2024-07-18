@@ -1,6 +1,6 @@
 import { is_authenticated } from '~/server/auth'
 
-export default defineNuxtRouteMiddleware(async to => {
+export default defineNuxtRouteMiddleware(to => {
   const is_index = to.path === '/'
   const is_login = to.path === '/login'
   const is_auth  = is_authenticated()
