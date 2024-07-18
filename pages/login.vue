@@ -6,6 +6,8 @@
 import { api_gestion_autorizacion, setCSRFToken } from '~/server/axios'
 import env from '~/config/env'
 
+useState('user', () => null)
+
 definePageMeta({ layout: false})
 
 onMounted(() => {
@@ -24,13 +26,30 @@ onMounted(() => {
   
 async function handleCredentialResponse(response) {
   const { data } = await api_gestion_autorizacion.post('/google_one_tap/login', { credential: response.credential })
+  const user = useState('user')
   setCSRFToken(data.ga_csrf_token)
+  user.value = {
+    nombre: 'nombre',
+    apellido: 'apellido',
+  }
   console.table(data)
+  return navigateTo('/inicio')
 }
 
 async function testTequest() {
   const { data } = await api_gestion_autorizacion.post('/test_request')
-  console.table(data)
+  const user = useState('user')
+  user.value = {
+    nombre: 'nombre',
+    apellido: 'apellido',
+  }
+  
+
+  console.log('fom login', toRaw(user.value))
+  
+  
+
+  return navigateTo('/inicio')
 }
 
 </script>

@@ -1,9 +1,28 @@
-import { is_authenticated } from '~/server/auth'
+import { api_gestion_autorizacion, setCSRFToken } from '~/server/axios'
 
-export default defineNuxtRouteMiddleware(to => {
+export default defineNuxtRouteMiddleware(async to => {
+  const user = useState('user')
+  
   const is_index = to.path === '/'
   const is_login = to.path === '/login'
-  const is_auth  = is_authenticated()
+  const is_auth = toRaw(user.value)
+
+  try {
+    if(!is_auth) {
+      const {data} = await api_gestion_autorizacion.post('/google_one_tap/refresh_token')
+      user.value = {
+        nombre: 'nombre',
+        apellido: 'apellido',
+      }
+      console.log(data)
+      
+      setCSRFToken(data.ga_csrf_token)
+    }
+  } catch (error) {
+    if (to.path != '/login') 
+      return navigateTo('/login')
+  }
+
 
   // Si el usuario está autenticado y va a /login o /, redirigir a /inicio
   if (is_auth && (is_login || is_index)) 
