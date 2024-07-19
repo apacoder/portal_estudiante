@@ -10,6 +10,7 @@ const api_gestion_autorizacion = axios.create({
 
 const setCSRFToken = csrfToken => {
   api_gestion_autorizacion.defaults.headers['X-GA-CSRF-TOKEN'] = csrfToken
+  localStorage.setItem('sKey_456DEF', csrfToken)
 }
 
 export { api_gestion_autorizacion, setCSRFToken }
