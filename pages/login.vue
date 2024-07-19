@@ -25,31 +25,15 @@ onMounted(() => {
 })
   
 async function handleCredentialResponse(response) {
-  const { data } = await api_gestion_autorizacion.post('/google_one_tap/login', { credential: response.credential })
+  const { data } = await api_gestion_autorizacion.post('/google/login', { credential: response.credential })
   const user = useState('user')
   setCSRFToken(data.ga_csrf_token)
-  user.value = {
-    nombre: 'nombre',
-    apellido: 'apellido',
-  }
-  console.table(data)
+  user.value = data.user
   return navigateTo('/inicio')
 }
 
 async function testTequest() {
-  const { data } = await api_gestion_autorizacion.post('/test_request')
-  const user = useState('user')
-  user.value = {
-    nombre: 'nombre',
-    apellido: 'apellido',
-  }
-  
-
-  console.log('fom login', toRaw(user.value))
-  
-  
-
-  return navigateTo('/inicio')
+  const { data } = await api_gestion_autorizacion.get('/auth/user')
 }
 
 </script>

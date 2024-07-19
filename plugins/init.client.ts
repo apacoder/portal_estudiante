@@ -5,8 +5,7 @@ export default defineNuxtPlugin(() => {
     provide: {
       async refreshGoogleToken() {
         try {
-          const { data } = await api_gestion_autorizacion.post('/google_one_tap/refresh_token')
-          console.log(data)
+          const { data } = await api_gestion_autorizacion.post('/google/refresh')
           return data
         } catch (e) {
           return navigateTo('/login')
